@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>拜读UNP前两部分 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。第一部分：简介和TCP/IP第一章： 简介 大三下学期学过计算机网络这么课，当时学的糊里糊涂，只了解到计算机网络是分层的，然后每层里面都有各种复杂的协议。但是脑海当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拜读UNP前两部分">
+<meta property="og:url" content="http://yoursite.com/2017/10/06/拜读UNP前两部分/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。第一部分：简介和TCP/IP第一章： 简介 大三下学期学过计算机网络这么课，当时学的糊里糊涂，只了解到计算机网络是分层的，然后每层里面都有各种复杂的协议。但是脑海当">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E4%B8%89%E8%B7%AF%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E8%BF%9E%E6%8E%A5%E5%85%B3%E9%97%AD.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E4%B8%80%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E5%A4%9A%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:updated_time" content="2019-02-01T11:27:41.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拜读UNP前两部分">
+<meta name="twitter:description" content="前言利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。第一部分：简介和TCP/IP第一章： 简介 大三下学期学过计算机网络这么课，当时学的糊里糊涂，只了解到计算机网络是分层的，然后每层里面都有各种复杂的协议。但是脑海当">
+<meta name="twitter:image" content="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E4%B8%89%E8%B7%AF%E6%8F%A1%E6%89%8B.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-拜读UNP前两部分" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/06/拜读UNP前两部分/" class="article-date">
+  <time datetime="2017-10-06T04:02:25.000Z" itemprop="datePublished">2017-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      拜读UNP前两部分
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h4 id="利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。"><a href="#利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。" class="headerlink" title="利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。"></a>利用国庆黄金周的假期，粗略地看了<a href="https://book.douban.com/subject/1500149/" target="_blank" rel="noopener">UNIX网络编程</a>这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。</h4><h3 id="第一部分：简介和TCP-IP"><a href="#第一部分：简介和TCP-IP" class="headerlink" title="第一部分：简介和TCP/IP"></a>第一部分：简介和TCP/IP</h3><h4 id="第一章：-简介"><a href="#第一章：-简介" class="headerlink" title="第一章： 简介"></a>第一章： 简介</h4><ol>
+<li>大三下学期学过计算机网络这么课，当时学的糊里糊涂，只了解到计算机网络是分层的，然后每层里面都有各种复杂的协议。但是脑海当中还是感觉非常的抽象，无法想象计算机网络是怎样协同工作的。</li>
+<li>UNP 的第一章主要介绍了计算机网络的发展以及分层思想，提供了一个简单的时间获取客户和服务程序，以及不同实现的系统对网络的支持。</li>
+<li>两个程序均对有可能发生出错的地方进行了处理，比如输入的参数个数不够， socket 或者 connect 函数执行失败等等。套接字描述符类似于文件描述符，而描述符其实可以理解为操作系统对某个资源的一个标识，就是所谓的句柄。这个标识是独一无二的，根据该标识就可以找到操作系统为该操作保留的各种资源。</li>
+<li>UNP 这本书的一个特色是将所有需要用到的头文件还有自定义的资源都包含在一个 unp.h 的头文件里面，需要进行检查是否错误的函数的用大写字母开头的包裹函数封装起来，以简化代码，比如 socket、read、write等函数。<h4 id="第二章-传输层：TCP、UDP和SCTP"><a href="#第二章-传输层：TCP、UDP和SCTP" class="headerlink" title="第二章:传输层：TCP、UDP和SCTP"></a>第二章:传输层：TCP、UDP和SCTP</h4><ul>
+<li>三种不同的传输层协议是用户程序直接接触的一层协议，SCTP流传输控制协议是较新的。</li>
+<li>TCP 是可靠的面向连接的全双工协议，三路握手连接，四分组交换序列终止连接。 TCP 状态转换图可以清楚描述每个状态之间的转换。TCP 的 TIME_WAIT 状态十分重要，为了处理最后一个 ACK 确认分组的丢失情况和允许老的重复分节从网络中消逝。主动关闭端的 TIME_WAIT 状态持续2倍的MSL（最长分节生命期）。</li>
+<li>SCTP 是四路握手连接，三路交换序列连接。没有半关联状态，连接时可以捎带数据。使用了标记，所以没有 TIME_WAIT 状态。</li>
+<li>TCP 并发编程的关键是服务器端新开子进程或者子线程来处理新的连接。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E4%B8%89%E8%B7%AF%E6%8F%A1%E6%89%8B.png" alt="enter description here" title="TCP三路握手"><br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E8%BF%9E%E6%8E%A5%E5%85%B3%E9%97%AD.png" alt="enter description here" title="TCP连接关闭"><h3 id="第二部分-基本套接字编程"><a href="#第二部分-基本套接字编程" class="headerlink" title="第二部分 基本套接字编程"></a>第二部分 基本套接字编程</h3><h4 id="第三章-套接字编程简介"><a href="#第三章-套接字编程简介" class="headerlink" title="第三章 套接字编程简介"></a>第三章 套接字编程简介</h4></li>
+</ul>
+<ol>
+<li>套接字地址结构，其实就是各种系统为了支持网络而设定的结构体。一般会包含地址和端口等信息，作为参数传递时一般会另外传递一个长度参数。</li>
+<li>网络传输和系统可能使用不同的字节存储方式，大小端字节序。<strong>可以用一个联合体（union关键字）测试使用的是那种字节序。低序字节放在起始地址是小端字节序</strong></li>
+<li>点分十进制和纯数字表达的 IP 地址可以通过 inet_pton、inet_ntop等进行转换。</li>
+<li>文本行交互的操作应该按照缓冲区来编写。例如 write、 read等函数。<h4 id="第四章-基本TCP套接字编程"><a href="#第四章-基本TCP套接字编程" class="headerlink" title="第四章 基本TCP套接字编程"></a>第四章 基本TCP套接字编程</h4></li>
+</ol>
+<ul>
+<li>客户和服务端都使用socket函数，客户connect，服务器则调用bind、listen、accept函数。</li>
+<li>TCP服务器一般都是并发的，用fork生成子进程进行处理。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0%E8%BF%87%E7%A8%8B.png" alt="enter description here" title="TCP套接字函数过程"><h4 id="第五章-TCP客户-服务器程序示例"><a href="#第五章-TCP客户-服务器程序示例" class="headerlink" title="第五章 TCP客户 服务器程序示例"></a>第五章 TCP客户 服务器程序示例</h4></li>
+<li>服务器连接子进程正常终止后进入僵死状态，用 waitpid 函数尽行清理。waitpid函数包含在信号处理函数当中。</li>
+<li>实际情形中还会遇到客户程序被阻塞在等待用户输入中而无法知道服务程序已终止的情况，或者服务器主机奔溃客户端要发送数据之后才能知道。可以用select即IO复用技术进行解决。</li>
+<li>发送二进制数据要考虑字节序的问题。<h4 id="第六章-IO复用"><a href="#第六章-IO复用" class="headerlink" title="第六章 IO复用"></a>第六章 IO复用</h4></li>
+<li>select实现IO复用，可以设置最长等待时间和最大描述符号等等。</li>
+<li>shutdown函数可以进行半关闭的操作，让缓冲区的内容发送完毕。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.png" alt="enter description here" title="IO复用模型"><h4 id="第七章-套接字选项"><a href="#第七章-套接字选项" class="headerlink" title="第七章 套接字选项"></a>第七章 套接字选项</h4>这个章节主要介绍通过getsockopt和setsockopt函数进行套接字选项的设置，内容繁多，可做字典查询。重要的选项比如SO_KEEPALIVE、SO_RCVBUF等等。<h4 id="第八章-基本UDP套接字编程"><a href="#第八章-基本UDP套接字编程" class="headerlink" title="第八章 基本UDP套接字编程"></a>第八章 基本UDP套接字编程</h4></li>
+<li>UDP无连接、不可靠、直接发送数据。通过从接收的套接字描述符验证发送者的信息。需要应用层进行一些检测，如检验重传等等。<strong> DNS使用的是UDP协议</strong>。</li>
+<li>UDP也可以使用connect函数连接，连接之后可以接受异步错误。</li>
+<li>UDP没有流量控制，当客户端和服务端的发送接收速度不一样的时候很容易丢包，丢包率很高。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0.png" alt="enter description here" title="UDP套接字函数"><h4 id="第九章-基本SCTP套接字编程"><a href="#第九章-基本SCTP套接字编程" class="headerlink" title="第九章 基本SCTP套接字编程"></a>第九章 基本SCTP套接字编程</h4></li>
+<li>SCTP的一对一连接跟TCP兼容，连接方式一致。SCTP是多宿的，可以一对多连接，一对多主要的特点在于消息可以发送到流上，而流号的不同标识了不同的数据块。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E4%B8%80%E8%BF%9E%E6%8E%A5.png" alt="enter description here" title="SCTP一对一连接"><br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E5%A4%9A%E8%BF%9E%E6%8E%A5.png" alt="enter description here" title="SCTP一对多连接"><h4 id="第十章-SCTP客户服务器程序例子"><a href="#第十章-SCTP客户服务器程序例子" class="headerlink" title="第十章 SCTP客户服务器程序例子"></a>第十章 SCTP客户服务器程序例子</h4>这个例子采用一对多的方式，运用迭代方式构造，实现多流特性。该特性可以用于解决头端阻塞问题。<strong> 比如发送三张图片，图一TCP分节丢失会使后续发送延迟。但是可以将三个图片分SCTP的三个流进行发送，图一的分节丢失并不影响其他流。</strong><h4 id="第十一章-名字与地址转换"><a href="#第十一章-名字与地址转换" class="headerlink" title="第十一章 名字与地址转换"></a>第十一章 名字与地址转换</h4></li>
+<li>为了解决地址的表示问题，通过域名系统。</li>
+<li>getaddrinfo和getnameinfo等函数是协议无关的。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。"><a href="#啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。" class="headerlink" title="啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。"></a>啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。</h3></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/06/拜读UNP前两部分/" data-id="cjrlyv7zl000hoz7zg282wgl7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/01/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/14/useHexoInTwoComputer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">useHexoInTwoComputer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Exercise/">Exercise</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-笔记/">c++ 笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git-版本管理/">git 版本管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本管理/">版本管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c-笔记/" style="font-size: 10px;">c++ 笔记</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/git-版本管理/" style="font-size: 20px;">git 版本管理</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/版本管理/" style="font-size: 10px;">版本管理</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/网络编程/" style="font-size: 10px;">网络编程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/01/插入排序/">小谈插入排序</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/01/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/06/拜读UNP前两部分/">拜读UNP前两部分</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/14/useHexoInTwoComputer/">useHexoInTwoComputer</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/14/cloneBranchFromOrigin/">cloneBranchFromOrigin</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

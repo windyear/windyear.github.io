@@ -62,6 +62,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-插入排序" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/01/插入排序/" class="article-date">
+  <time datetime="2019-02-01T11:27:41.432Z" itemprop="datePublished">2019-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/01/插入排序/">小谈插入排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="小谈插入排序"><a href="#小谈插入排序" class="headerlink" title="小谈插入排序"></a>小谈插入排序</h1><ol>
+<li>插入排序是常见的排序方式之一，时间复杂度为O(n^2)。它是一种原址性的排序方法，只需要额外的一点空间存储中间变量。比较节省空间，在输入规模不大的时候不失为一种好的排序方法。</li>
+<li>主要思路如下：从第二个元素开始，逐个与前面的元素比较以找到合适的插入位置，不符合大小关系的往后移动一位，直到找到正确的位置为止。</li>
+<li>代码如下：`#include &lt;stdio.h&gt;<br>int insertSort(int array[],int length){<br> for(int i=1;i&lt;length;i++){<pre><code>int j=i-1;
+int key=array[i];
+while(array[j]&gt;key){
+    array[j+1]=array[j];
+    j--;
+}
+array[j+1]=key;
+</code></pre> }<br> return 0;<br> }<br>int main(void) {<br> // your code goes here<br> //初始化一个长度为5的数组<br> int arr[5]={23,4,35,76,34};<br> int length=sizeof(arr)/sizeof(arr[0]);<br> insertSort(arr,length);<br> for(int i=0;i&lt;5;i++){<pre><code>printf(&quot;%d-&quot;,arr[i]);
+</code></pre> }<pre><code>printf(&quot;%d&quot;,sizeof(arr)/sizeof(arr[0]));
+</code></pre> return 0;<br>}<br>`</li>
+<li>代码分析：写一个函数实现排序，这里面要注意元素个数的问题，还有边界值得问题。我在写代码的时候忽略了边界值检测。<strong>这里说一个函数的数组参数传递为题，传入函数的数组名字已经退化成了指针，所以无法求出数组的长度，需要额外传入一个长度参数。如果对函数里面的数组名字求sizeof()只会得到指针的大小，32位机的指针大小是4个字节。</strong></li>
+<li>优化：看到有一种方法将寻找合适位置的查找采用二分查找，但是时间复杂度没有提高，因为不是查找大小相等的元素，还是要比较完所有的元素。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/01/插入排序/" data-id="cjrlyv7zn000koz7zlx5m04b9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/01/hello-world/" class="article-date">
@@ -97,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/01/hello-world/" data-id="cjrlx16wj0000c07z3cbbswqx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/01/hello-world/" data-id="cjrlyv7z70004oz7zksrrl85w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -107,25 +163,483 @@
 
 
   
+    <article id="post-拜读UNP前两部分" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/06/拜读UNP前两部分/" class="article-date">
+  <time datetime="2017-10-06T04:02:25.000Z" itemprop="datePublished">2017-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/06/拜读UNP前两部分/">拜读UNP前两部分</a>
+    </h1>
+  
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h4 id="利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。"><a href="#利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。" class="headerlink" title="利用国庆黄金周的假期，粗略地看了UNIX网络编程这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。"></a>利用国庆黄金周的假期，粗略地看了<a href="https://book.douban.com/subject/1500149/" target="_blank" rel="noopener">UNIX网络编程</a>这边关于网络编程的经典书籍。主要当做是复习了一下计算机网络的知识，还有了解了一些基本的套接字编程，包含TCP、UDP和SCTP三种不同的传输层协议。在这里写一篇总结，当做是知识的整理。</h4><h3 id="第一部分：简介和TCP-IP"><a href="#第一部分：简介和TCP-IP" class="headerlink" title="第一部分：简介和TCP/IP"></a>第一部分：简介和TCP/IP</h3><h4 id="第一章：-简介"><a href="#第一章：-简介" class="headerlink" title="第一章： 简介"></a>第一章： 简介</h4><ol>
+<li>大三下学期学过计算机网络这么课，当时学的糊里糊涂，只了解到计算机网络是分层的，然后每层里面都有各种复杂的协议。但是脑海当中还是感觉非常的抽象，无法想象计算机网络是怎样协同工作的。</li>
+<li>UNP 的第一章主要介绍了计算机网络的发展以及分层思想，提供了一个简单的时间获取客户和服务程序，以及不同实现的系统对网络的支持。</li>
+<li>两个程序均对有可能发生出错的地方进行了处理，比如输入的参数个数不够， socket 或者 connect 函数执行失败等等。套接字描述符类似于文件描述符，而描述符其实可以理解为操作系统对某个资源的一个标识，就是所谓的句柄。这个标识是独一无二的，根据该标识就可以找到操作系统为该操作保留的各种资源。</li>
+<li>UNP 这本书的一个特色是将所有需要用到的头文件还有自定义的资源都包含在一个 unp.h 的头文件里面，需要进行检查是否错误的函数的用大写字母开头的包裹函数封装起来，以简化代码，比如 socket、read、write等函数。<h4 id="第二章-传输层：TCP、UDP和SCTP"><a href="#第二章-传输层：TCP、UDP和SCTP" class="headerlink" title="第二章:传输层：TCP、UDP和SCTP"></a>第二章:传输层：TCP、UDP和SCTP</h4><ul>
+<li>三种不同的传输层协议是用户程序直接接触的一层协议，SCTP流传输控制协议是较新的。</li>
+<li>TCP 是可靠的面向连接的全双工协议，三路握手连接，四分组交换序列终止连接。 TCP 状态转换图可以清楚描述每个状态之间的转换。TCP 的 TIME_WAIT 状态十分重要，为了处理最后一个 ACK 确认分组的丢失情况和允许老的重复分节从网络中消逝。主动关闭端的 TIME_WAIT 状态持续2倍的MSL（最长分节生命期）。</li>
+<li>SCTP 是四路握手连接，三路交换序列连接。没有半关联状态，连接时可以捎带数据。使用了标记，所以没有 TIME_WAIT 状态。</li>
+<li>TCP 并发编程的关键是服务器端新开子进程或者子线程来处理新的连接。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E4%B8%89%E8%B7%AF%E6%8F%A1%E6%89%8B.png" alt="enter description here" title="TCP三路握手"><br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E8%BF%9E%E6%8E%A5%E5%85%B3%E9%97%AD.png" alt="enter description here" title="TCP连接关闭"><h3 id="第二部分-基本套接字编程"><a href="#第二部分-基本套接字编程" class="headerlink" title="第二部分 基本套接字编程"></a>第二部分 基本套接字编程</h3><h4 id="第三章-套接字编程简介"><a href="#第三章-套接字编程简介" class="headerlink" title="第三章 套接字编程简介"></a>第三章 套接字编程简介</h4></li>
+</ul>
+<ol>
+<li>套接字地址结构，其实就是各种系统为了支持网络而设定的结构体。一般会包含地址和端口等信息，作为参数传递时一般会另外传递一个长度参数。</li>
+<li>网络传输和系统可能使用不同的字节存储方式，大小端字节序。<strong>可以用一个联合体（union关键字）测试使用的是那种字节序。低序字节放在起始地址是小端字节序</strong></li>
+<li>点分十进制和纯数字表达的 IP 地址可以通过 inet_pton、inet_ntop等进行转换。</li>
+<li>文本行交互的操作应该按照缓冲区来编写。例如 write、 read等函数。<h4 id="第四章-基本TCP套接字编程"><a href="#第四章-基本TCP套接字编程" class="headerlink" title="第四章 基本TCP套接字编程"></a>第四章 基本TCP套接字编程</h4></li>
+</ol>
+<ul>
+<li>客户和服务端都使用socket函数，客户connect，服务器则调用bind、listen、accept函数。</li>
+<li>TCP服务器一般都是并发的，用fork生成子进程进行处理。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/TCP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0%E8%BF%87%E7%A8%8B.png" alt="enter description here" title="TCP套接字函数过程"><h4 id="第五章-TCP客户-服务器程序示例"><a href="#第五章-TCP客户-服务器程序示例" class="headerlink" title="第五章 TCP客户 服务器程序示例"></a>第五章 TCP客户 服务器程序示例</h4></li>
+<li>服务器连接子进程正常终止后进入僵死状态，用 waitpid 函数尽行清理。waitpid函数包含在信号处理函数当中。</li>
+<li>实际情形中还会遇到客户程序被阻塞在等待用户输入中而无法知道服务程序已终止的情况，或者服务器主机奔溃客户端要发送数据之后才能知道。可以用select即IO复用技术进行解决。</li>
+<li>发送二进制数据要考虑字节序的问题。<h4 id="第六章-IO复用"><a href="#第六章-IO复用" class="headerlink" title="第六章 IO复用"></a>第六章 IO复用</h4></li>
+<li>select实现IO复用，可以设置最长等待时间和最大描述符号等等。</li>
+<li>shutdown函数可以进行半关闭的操作，让缓冲区的内容发送完毕。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.png" alt="enter description here" title="IO复用模型"><h4 id="第七章-套接字选项"><a href="#第七章-套接字选项" class="headerlink" title="第七章 套接字选项"></a>第七章 套接字选项</h4>这个章节主要介绍通过getsockopt和setsockopt函数进行套接字选项的设置，内容繁多，可做字典查询。重要的选项比如SO_KEEPALIVE、SO_RCVBUF等等。<h4 id="第八章-基本UDP套接字编程"><a href="#第八章-基本UDP套接字编程" class="headerlink" title="第八章 基本UDP套接字编程"></a>第八章 基本UDP套接字编程</h4></li>
+<li>UDP无连接、不可靠、直接发送数据。通过从接收的套接字描述符验证发送者的信息。需要应用层进行一些检测，如检验重传等等。<strong> DNS使用的是UDP协议</strong>。</li>
+<li>UDP也可以使用connect函数连接，连接之后可以接受异步错误。</li>
+<li>UDP没有流量控制，当客户端和服务端的发送接收速度不一样的时候很容易丢包，丢包率很高。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E5%87%BD%E6%95%B0.png" alt="enter description here" title="UDP套接字函数"><h4 id="第九章-基本SCTP套接字编程"><a href="#第九章-基本SCTP套接字编程" class="headerlink" title="第九章 基本SCTP套接字编程"></a>第九章 基本SCTP套接字编程</h4></li>
+<li>SCTP的一对一连接跟TCP兼容，连接方式一致。SCTP是多宿的，可以一对多连接，一对多主要的特点在于消息可以发送到流上，而流号的不同标识了不同的数据块。<br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E4%B8%80%E8%BF%9E%E6%8E%A5.png" alt="enter description here" title="SCTP一对一连接"><br><img src="http://oba6vpyyf.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/SCTP%E4%B8%80%E5%AF%B9%E5%A4%9A%E8%BF%9E%E6%8E%A5.png" alt="enter description here" title="SCTP一对多连接"><h4 id="第十章-SCTP客户服务器程序例子"><a href="#第十章-SCTP客户服务器程序例子" class="headerlink" title="第十章 SCTP客户服务器程序例子"></a>第十章 SCTP客户服务器程序例子</h4>这个例子采用一对多的方式，运用迭代方式构造，实现多流特性。该特性可以用于解决头端阻塞问题。<strong> 比如发送三张图片，图一TCP分节丢失会使后续发送延迟。但是可以将三个图片分SCTP的三个流进行发送，图一的分节丢失并不影响其他流。</strong><h4 id="第十一章-名字与地址转换"><a href="#第十一章-名字与地址转换" class="headerlink" title="第十一章 名字与地址转换"></a>第十一章 名字与地址转换</h4></li>
+<li>为了解决地址的表示问题，通过域名系统。</li>
+<li>getaddrinfo和getnameinfo等函数是协议无关的。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。"><a href="#啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。" class="headerlink" title="啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。"></a>啰里啰嗦记录了一些知识点，回顾了之前看过的内容，接下来是找机会时间一下，比如写一个http服务器。</h3></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/06/拜读UNP前两部分/" data-id="cjrlyv7zl000hoz7zg282wgl7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-useHexoInTwoComputer" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/useHexoInTwoComputer/" class="article-date">
+  <time datetime="2016-12-14T10:30:47.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/useHexoInTwoComputer/">useHexoInTwoComputer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="瞎折腾——在两台电脑上同时使用hexo发布博客"><a href="#瞎折腾——在两台电脑上同时使用hexo发布博客" class="headerlink" title="瞎折腾——在两台电脑上同时使用hexo发布博客"></a>瞎折腾——在两台电脑上同时使用hexo发布博客</h2><h3 id="作死"><a href="#作死" class="headerlink" title="作死"></a>作死</h3><ul>
+<li>想要同时在宿舍和实验室写文章并且马上发布。</li>
+<li>之前的方式是写好文章，然后同步到github上的管理原始代码的分支，然后在宿舍pull下来并且使用hexo命令进行发布，这样太麻烦了。</li>
+<li>实验：写好文章后马上    <code>hexo deploy -g</code>发布，结果没有生成网站文件，并且将以前的commit覆盖了。<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3>上网查了很久，发现了一个.deploy_git的文件夹可能负责存储hexo发布指令的操作结果。于是把该文件夹也同步了。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/14/useHexoInTwoComputer/" data-id="cjrlyv7zi000goz7z0xc8yge5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-版本管理/">git 版本管理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cloneBranchFromOrigin" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/cloneBranchFromOrigin/" class="article-date">
+  <time datetime="2016-12-14T01:56:49.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/cloneBranchFromOrigin/">cloneBranchFromOrigin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="利用git从远程仓库中clone其他分支"><a href="#利用git从远程仓库中clone其他分支" class="headerlink" title="利用git从远程仓库中clone其他分支"></a>利用git从远程仓库中clone其他分支</h1><h2 id="使用需求说明"><a href="#使用需求说明" class="headerlink" title="使用需求说明"></a>使用需求说明</h2><ul>
+<li>使用git clone时会默认下载master分支并且实现跟踪，或者可以直接指定要下载的分支。 </li>
+<li>其他人将其他分支推送到远程之后需要在本地创建一个跟踪分支进行开发。<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2></li>
+</ul>
+<ol>
+<li><code>git checkout -b branchname origin/branchname</code>本地创建一个对应的分支。</li>
+<li><code>git checkout -t origin/branchname</code>直接在本地创建</li>
+<li><code>git fetch origin branchname:branchname</code></li>
+<li><strong>错误方式:</strong><br>`git branch branchname;git checkout branchname;git pull origin branchname:branchname<br> 这样是在当前分支上创建新分支再与远程分支合并。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/14/cloneBranchFromOrigin/" data-id="cjrlyv7z00001oz7z6i6ycfl2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-版本管理/">git 版本管理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-learningSocket" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/12/learningSocket/" class="article-date">
+  <time datetime="2016-12-12T14:31:16.000Z" itemprop="datePublished">2016-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/12/learningSocket/">learningSocket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简单的本地socket编程以及能够下载网页的socket客户端"><a href="#简单的本地socket编程以及能够下载网页的socket客户端" class="headerlink" title="简单的本地socket编程以及能够下载网页的socket客户端"></a>简单的本地socket编程以及能够下载网页的socket客户端</h1><h2 id="程序说明"><a href="#程序说明" class="headerlink" title="程序说明"></a>程序说明</h2><ol>
+<li>使用python封装好的网络编程模块socket,可以快速实现socke编程开发。</li>
+<li>服务端的主要操作是首先有一个套接字实例，然后去监听某个地址和端口。客户端同样这样，使用connect()函数来连接服务器。此时，服务器的accept()方法一直阻塞到有连接并且返回一个套接字，地址的元组。通过套接字实例的send和recv方法可以实现发送和接受消息。</li>
+<li>使用完之后就可以关闭socket。<h2 id="程序如下："><a href="#程序如下：" class="headerlink" title="程序如下："></a>程序如下：</h2></li>
+<li><p>服务器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">s=socket.socket()</span><br><span class="line"></span><br><span class="line">host=socket.gethostname()</span><br><span class="line">port=<span class="number">1234</span></span><br><span class="line"></span><br><span class="line">s.bind((host,port))</span><br><span class="line"></span><br><span class="line">s.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">True</span>):</span><br><span class="line">    c,addr =s.accept()</span><br><span class="line">    print(<span class="string">'Got connection from'</span>,addr)</span><br><span class="line">    c.send(<span class="string">'Thank you for connecting'</span>.encode())</span><br><span class="line">    c.close()`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>客户端：<br> #!/usr/bin/python</p>
+<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding:utf-8 --"></a>-<em>- coding:utf-8 -</em>-</h1><p> import socket</p>
+<p> s=socket.socket()</p>
+<p> host=socket.gethostname()<br> port=1234</p>
+<p> s.connect((host,port))<br> print(s.recv(1024).decode())</p>
+<p> #test=input(“Just testing:”)<br> #raw_input()<img src="http://i.imgur.com/W8jyeQL.png" alt="图片不见了哟"></p>
+</li>
+<li>运行结果<br><img src="http://i.imgur.com/W8jyeQL.png" alt="图片不见了哟"><br><img src="http://i.imgur.com/3rMIFqF.png" alt=""><h2 id="各种坑"><a href="#各种坑" class="headerlink" title="各种坑"></a>各种坑</h2></li>
+</ol>
+<ul>
+<li>首先是bind和connect函数的参数是一个元组而不是两个参数。</li>
+<li>第二个大坑是python3的str和byte类型明显的区分，所以通过send发送的字符串要先进行编码或者直接<code>b&#39;Hello world&#39;</code>这样表明是是byte类型的，同理接收时要解码。</li>
+<li>无法搞清楚端口号明明已经设置好了，但是连接时会换端口，不知道是什么原因。</li>
+</ul>
+<h2 id="下面是一个下载网页的程序"><a href="#下面是一个下载网页的程序" class="headerlink" title="下面是一个下载网页的程序"></a>下面是一个下载网页的程序</h2><h3 id="核心原理就是建立好socket连接之后发送GET请求，服务器会根据请求的内容返回内容，然后处理内容将其保存到文件中就可以"><a href="#核心原理就是建立好socket连接之后发送GET请求，服务器会根据请求的内容返回内容，然后处理内容将其保存到文件中就可以" class="headerlink" title="核心原理就是建立好socket连接之后发送GET请求，服务器会根据请求的内容返回内容，然后处理内容将其保存到文件中就可以"></a>核心原理就是建立好socket连接之后发送GET请求，服务器会根据请求的内容返回内容，然后处理内容将其保存到文件中就可以</h3><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><p>#!/usr/bin/python</p>
+<h1 id="coding-utf-8-1"><a href="#coding-utf-8-1" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><pre><code>import socket
+s=socket.socket()
+
+s.connect((&apos;www.sina.com.cn&apos;,80))
+s.send(b&apos;GET / HTTP/1.1\nHost: www.sina.com.cn\nConnection: keep-alive\n\n&apos;)
+
+buffer=[]
+while True:
+d=s.recv(1024)
+if d:
+buffer.append(d)
+else:
+break
+data=b&apos;&apos;.join(buffer)
+s.close()
+
+#header,html = data.split(b&apos;\n\n&apos;,1)
+#print(header.decode(&apos;utf-8&apos;))
+
+with open(r&apos;D:\windyear_files\testfiles\sina_test.html&apos;,&apos;wb&apos;) as f:
+f.write(data)
+</code></pre><p><strong>运行的结果是下载到一个网页保存为html文件</strong></p>
+<h3 id="走过的坑"><a href="#走过的坑" class="headerlink" title="走过的坑"></a>走过的坑</h3><ol>
+<li>首先是windows系统和linux对于回车的使用是不同的，只需要\n而非\r\n。由此引发了一个关于split函数解包的问题，第二个参数指定返回多少个值，但是不能忽略不能分割的情况。</li>
+<li>其次是GET请求的参数问题，一开始的Connection参数是close,这时下载了一个错误的网页，后来使用chrome的开发者工具了解发哦正确的参数应该是keep-alive。</li>
+</ol>
+<p>##总结<br>由于python封装好了socket模块，所以使用起来比较简单。但是很多细节问题必须自己实现一次才能发现。今天虽然做的不多，但是也算是有一些收获，希望自己可以坚持下去。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/12/learningSocket/" data-id="cjrlyv7z90005oz7z2m3d01xc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络编程/">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-conclusionOfAWeek" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/11/conclusionOfAWeek/" class="article-date">
+  <time datetime="2016-12-11T15:05:10.000Z" itemprop="datePublished">2016-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/11/conclusionOfAWeek/">conclusionOfAWeek</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/11/conclusionOfAWeek/" data-id="cjrlyv7z50003oz7z4t4psfal" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-title" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/28/title/" class="article-date">
+  <time datetime="2016-11-28T12:36:23.000Z" itemprop="datePublished">2016-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/28/title/">如何从远程仓库中clone不同的分支</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/28/title/" data-id="cjrlyv7zf000coz7zuhsmpc44" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学习git两天总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/22/学习git两天总结/" class="article-date">
+  <time datetime="2016-11-22T15:25:51.000Z" itemprop="datePublished">2016-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/22/学习git两天总结/">学习git两天总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结说明"><a href="#总结说明" class="headerlink" title="总结说明"></a>总结说明</h3><p> 教程花了接近两天的时间学习了git,基本上是顺着<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" title="hello" target="_blank" rel="noopener">廖雪峰老师的git教程</a>走的,自己敲了大多数命令，总算是入门了。想起自己好久没有打理自己的博客了，于是乎写下这篇总结当做是一次温故而知新的过程，并且留下一些自己一步一步走过的学习轨迹。</p>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>git是一个分布式的版本管理软件，这句话有两重意思。第一：版本管理工具：本人的理解git是用来管理版本的，方便记录每次对代码的修改。实际上不单单是代码文件，任何文件的修改都可以被commit为版本，不过像图像，word文档这种不是纯文本格式的文件的具体修改git捕捉不到，但是仍然可以保存版本。<br>第二，分布式的：这是说每一个代码仓库都是等同性质的，都拥有所有的代码版本，只要及时同步其他仓库的对代码的修改。而现实开发中往往会用将一份代码托管到服务器上用于各个仓库进行代码同步。</p>
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>安装git十分简单，傻瓜式安装，很简单就不详细展开了。有一点比较特别的是，有三种打开方式的：一种是git gui，这种没有试过，不过本质上仍然是指令的封装，只不过更加直观一些。当然速度也会更慢一些。第二种是<strong>git bash，这种形式可以用一些Llinux的指令</strong>，暂时没有搞明白，估计是封装了linux的一些指令。最后是git cmd，就是cmd中使用git，只要环境变量设置好了就可以使用，想jaca一样。</p>
+<ol>
+<li><code>git init</code>是初始化仓库。</li>
+<li><code>git status</code>是十分有用的命令，用于查看当前的状态，会给出很多重要的信息比如说哪些文件被修改了但是还没有add进暂存区，哪些暂存区的文件还没有commit，它会提示操作，包括如何回退版本。</li>
+<li><code>git add filename</code>可以将修改过的文件添加到暂存区，相当于加入购物车，待后续的commit操作。</li>
+<li><code>git commit -m</code>在当前分支生成一个版本。</li>
+<li><code>git reset --hard HEAD</code>回退版本，可以使用id或者HEAD^。</li>
+<li>分支操作：<code>git branch; git checkout branchname;git branch -d</code>各种用于分支操作的指令。一般来说开发软件的时候按照功能来增加模块，每次都新建分支来开发。之后再<code>git merge branchname</code>合并分支，有时候需要进行冲突处理。</li>
+<li>总结：一般来说简单的操作会经常使用，只要多使用，多熟悉就行。如果忘记了用法的话可以查资料解决，不必太过于纠结于指令，值需要明白如何使用。<h4 id="使用github作为远程库"><a href="#使用github作为远程库" class="headerlink" title="使用github作为远程库"></a>使用github作为远程库</h4>由于之前已经拥有github账号，所以使用起来也很快。<code>git clone url</code>可以克隆仓库。一开始需要先关联仓库，如果先有本地仓库。使用<code>git push origin branch</code>可以推送本地分支到远程库，还要时不时拉取一下远程分支以获取同步。<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3>写着写着发现自己的中心不太明确，也不太会表达。写到后面有点敷衍了事，毕竟git一时半会也说不清楚，更依赖于实践过程中遇到问题，这样才会越来越熟悉。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/11/22/学习git两天总结/" data-id="cjrlyv7zg000eoz7zms34mbst" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/版本管理/">版本管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C++笔记1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/11/C++笔记1/" class="article-date">
+  <time datetime="2016-09-11T10:40:58.000Z" itemprop="datePublished">2016-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/11/C++笔记1/">C++笔记1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="C-学习笔记1"><a href="#C-学习笔记1" class="headerlink" title="C++学习笔记1"></a>C++学习笔记1</h3><h4 id="第二章开始学习C"><a href="#第二章开始学习C" class="headerlink" title="第二章开始学习C++"></a>第二章开始学习C++</h4><ul>
+<li>过程化编程思想是根据执行的操作来构思程序。使问题满足语言的过程性方法。</li>
+<li>面向对象让语言来满足问题的要求。</li>
+<li>名称空间可以区分不同版本的代码，比如不停公司开发的相同函数名称的函数。</li>
+<li>回车不能放在字符串中间，空格，制表和回车可以被忽略，但是不能放在名称或者单词之间。</li>
+<li>cout可以实现智能的打印转换，比如打印一个整形变量，变量里面存储的是数值的二进制形式，但是cout可以识别它并且自动转换为字符串输出。其实是用了操作符重载的技术，重载的操作符是&lt;&lt;。<h4 id="第四章复合类型"><a href="#第四章复合类型" class="headerlink" title="第四章复合类型"></a>第四章复合类型</h4></li>
+</ul>
+<ol>
+<li>数组的初始化可以在声明的时候进行，可以部分初始化，可以初始化为0。但是不能将数组整个赋值给另外一个数组。java可以，因为java的数组名字本身就是一个引用，可以赋值给另外一个引用。</li>
+<li>c风格上的字符串是以\0来结尾的，字符串与char数组是有区别的。‘a’与“a”是不同的，后者是字符串常量，包括一个空字符。初始化的时候不用 显式写出字符串。</li>
+<li>可以使用库函数strlen()来计算存储在数组中的字符串长度。</li>
+<li><strong>字符串输入的特殊性</strong>cin采用空白换行还有制表来判断输入结束。可以采用getline()或者get()函数来实现面向行的输入。例如<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> name[<span class="number">40</span>];</span><br><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">20</span>);<span class="comment">//表示从流中读取20个字符或</span></span><br><span class="line"><span class="comment">//者直到换行符。实际上是19个，最后会自动添加一个空字</span></span><br><span class="line"><span class="comment">//符\0。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>get()函数不会存储换行符，但是不会将换行符丢弃，还会将它保留在输入队列中。下一个cin读取时第一个看到就是换行符。可以在输入后面单独调用一个get()来处理掉换行符。cin.getJ()可以读取下一个字符包括换行符。<strong>cin也会保留换行到队列中。但是下一个cin可以忽略掉换行符，但是getline却不行。</strong></p>
+<ol start="5">
+<li>c++可以采用string类来处理字符串的问题，方便。这时候就可以将一个string对象赋值给另外一个string对象了。</li>
+<li>共用体union可以存储不同的类型，但是不能同时存储。</li>
+<li>枚举类型主要是定义一些常量值，只能是枚举的值，不能是其他的值，具体的值是整数。</li>
+<li><strong>指针：一定要在使用*解除地址引用之前将指针值确定下来，否则会出现很大的bug。未初始化之前不能使用，使用new以后就算是初始化了。</strong></li>
+<li>new和delete要成对的使用，new提供了动态分配内存的能力，如果直接声明则静态分配内存，一直占用。new主要用来生成动态数组。</li>
+<li>一般来说，cout会直接打印指针的值，但是如果是指向字符的指针会打印整个字符串。<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>重新学习C++，确实可以发现很多以前没有注意到的地方，有不同的收获。做笔记的时候只是随便写写，并没有较好的格式，希望以后能够有所改善。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/11/C++笔记1/" data-id="cjrlyv7yu0000oz7zcbonb3n2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-笔记/">c++ 笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Exercise/">Exercise</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-笔记/">c++ 笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git-版本管理/">git 版本管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本管理/">版本管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程/">网络编程</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c-笔记/" style="font-size: 10px;">c++ 笔记</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/git-版本管理/" style="font-size: 20px;">git 版本管理</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/socket/" style="font-size: 10px;">socket</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/版本管理/" style="font-size: 10px;">版本管理</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/网络编程/" style="font-size: 10px;">网络编程</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
     </div>
   </div>
 
@@ -138,7 +652,23 @@
       <ul>
         
           <li>
+            <a href="/2019/02/01/插入排序/">小谈插入排序</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/01/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/06/拜读UNP前两部分/">拜读UNP前两部分</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/14/useHexoInTwoComputer/">useHexoInTwoComputer</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/14/cloneBranchFromOrigin/">cloneBranchFromOrigin</a>
           </li>
         
       </ul>

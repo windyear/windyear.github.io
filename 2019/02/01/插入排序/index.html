@@ -5,19 +5,19 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>小谈插入排序 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="小谈插入排序 插入排序是常见的排序方式之一，时间复杂度为O(n^2)。它是一种原址性的排序方法，只需要额外的一点空间存储中间变量。比较节省空间，在输入规模不大的时候不失为一种好的排序方法。 主要思路如下：从第二个元素开始，逐个与前面的元素比较以找到合适的插入位置，不符合大小关系的往后移动一位，直到找到正确的位置为止。 代码如下：`#include &amp;lt;stdio.h&amp;gt;int insert">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/02/01/hello-world/index.html">
+<meta property="og:title" content="小谈插入排序">
+<meta property="og:url" content="http://yoursite.com/2019/02/01/插入排序/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="小谈插入排序 插入排序是常见的排序方式之一，时间复杂度为O(n^2)。它是一种原址性的排序方法，只需要额外的一点空间存储中间变量。比较节省空间，在输入规模不大的时候不失为一种好的排序方法。 主要思路如下：从第二个元素开始，逐个与前面的元素比较以找到合适的插入位置，不符合大小关系的往后移动一位，直到找到正确的位置为止。 代码如下：`#include &amp;lt;stdio.h&amp;gt;int insert">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-01T10:35:28.262Z">
+<meta property="og:updated_time" content="2019-02-01T11:27:41.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="小谈插入排序">
+<meta name="twitter:description" content="小谈插入排序 插入排序是常见的排序方式之一，时间复杂度为O(n^2)。它是一种原址性的排序方法，只需要额外的一点空间存储中间变量。比较节省空间，在输入规模不大的时候不失为一种好的排序方法。 主要思路如下：从第二个元素开始，逐个与前面的元素比较以找到合适的插入位置，不符合大小关系的往后移动一位，直到找到正确的位置为止。 代码如下：`#include &amp;lt;stdio.h&amp;gt;int insert">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,12 +64,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-插入排序" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/01/hello-world/" class="article-date">
-  <time datetime="2019-02-01T10:35:28.262Z" itemprop="datePublished">2019-02-01</time>
+    <a href="/2019/02/01/插入排序/" class="article-date">
+  <time datetime="2019-02-01T11:27:41.432Z" itemprop="datePublished">2019-02-01</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -78,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      小谈插入排序
     </h1>
   
 
@@ -86,20 +90,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="小谈插入排序"><a href="#小谈插入排序" class="headerlink" title="小谈插入排序"></a>小谈插入排序</h1><ol>
+<li>插入排序是常见的排序方式之一，时间复杂度为O(n^2)。它是一种原址性的排序方法，只需要额外的一点空间存储中间变量。比较节省空间，在输入规模不大的时候不失为一种好的排序方法。</li>
+<li>主要思路如下：从第二个元素开始，逐个与前面的元素比较以找到合适的插入位置，不符合大小关系的往后移动一位，直到找到正确的位置为止。</li>
+<li>代码如下：`#include &lt;stdio.h&gt;<br>int insertSort(int array[],int length){<br> for(int i=1;i&lt;length;i++){<pre><code>int j=i-1;
+int key=array[i];
+while(array[j]&gt;key){
+    array[j+1]=array[j];
+    j--;
+}
+array[j+1]=key;
+</code></pre> }<br> return 0;<br> }<br>int main(void) {<br> // your code goes here<br> //初始化一个长度为5的数组<br> int arr[5]={23,4,35,76,34};<br> int length=sizeof(arr)/sizeof(arr[0]);<br> insertSort(arr,length);<br> for(int i=0;i&lt;5;i++){<pre><code>printf(&quot;%d-&quot;,arr[i]);
+</code></pre> }<pre><code>printf(&quot;%d&quot;,sizeof(arr)/sizeof(arr[0]));
+</code></pre> return 0;<br>}<br>`</li>
+<li>代码分析：写一个函数实现排序，这里面要注意元素个数的问题，还有边界值得问题。我在写代码的时候忽略了边界值检测。<strong>这里说一个函数的数组参数传递为题，传入函数的数组名字已经退化成了指针，所以无法求出数组的长度，需要额外传入一个长度参数。如果对函数里面的数组名字求sizeof()只会得到指针的大小，32位机的指针大小是4个字节。</strong></li>
+<li>优化：看到有一种方法将寻找合适位置的查找采用二分查找，但是时间复杂度没有提高，因为不是查找大小相等的元素，还是要比较完所有的元素。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/01/hello-world/" data-id="cjrlyv7z70004oz7zksrrl85w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/01/插入排序/" data-id="cjrlyv7zn000koz7zlx5m04b9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -108,19 +119,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/02/01/插入排序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          小谈插入排序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/06/拜读UNP前两部分/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">拜读UNP前两部分</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>

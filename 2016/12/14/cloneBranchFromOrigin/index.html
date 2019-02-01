@@ -5,19 +5,20 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>cloneBranchFromOrigin | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="利用git从远程仓库中clone其他分支使用需求说明 使用git clone时会默认下载master分支并且实现跟踪，或者可以直接指定要下载的分支。  其他人将其他分支推送到远程之后需要在本地创建一个跟踪分支进行开发。使用方式   git checkout -b branchname origin/branchname本地创建一个对应的分支。 git checkout -t origin/bran">
+<meta name="keywords" content="git 版本管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/02/01/hello-world/index.html">
+<meta property="og:title" content="cloneBranchFromOrigin">
+<meta property="og:url" content="http://yoursite.com/2016/12/14/cloneBranchFromOrigin/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="利用git从远程仓库中clone其他分支使用需求说明 使用git clone时会默认下载master分支并且实现跟踪，或者可以直接指定要下载的分支。  其他人将其他分支推送到远程之后需要在本地创建一个跟踪分支进行开发。使用方式   git checkout -b branchname origin/branchname本地创建一个对应的分支。 git checkout -t origin/bran">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-01T10:35:28.262Z">
+<meta property="og:updated_time" content="2019-02-01T11:27:41.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="cloneBranchFromOrigin">
+<meta name="twitter:description" content="利用git从远程仓库中clone其他分支使用需求说明 使用git clone时会默认下载master分支并且实现跟踪，或者可以直接指定要下载的分支。  其他人将其他分支推送到远程之后需要在本地创建一个跟踪分支进行开发。使用方式   git checkout -b branchname origin/branchname本地创建一个对应的分支。 git checkout -t origin/bran">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-cloneBranchFromOrigin" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/01/hello-world/" class="article-date">
-  <time datetime="2019-02-01T10:35:28.262Z" itemprop="datePublished">2019-02-01</time>
+    <a href="/2016/12/14/cloneBranchFromOrigin/" class="article-date">
+  <time datetime="2016-12-14T01:56:49.000Z" itemprop="datePublished">2016-12-14</time>
 </a>
     
   </div>
@@ -78,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      cloneBranchFromOrigin
     </h1>
   
 
@@ -86,41 +87,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="利用git从远程仓库中clone其他分支"><a href="#利用git从远程仓库中clone其他分支" class="headerlink" title="利用git从远程仓库中clone其他分支"></a>利用git从远程仓库中clone其他分支</h1><h2 id="使用需求说明"><a href="#使用需求说明" class="headerlink" title="使用需求说明"></a>使用需求说明</h2><ul>
+<li>使用git clone时会默认下载master分支并且实现跟踪，或者可以直接指定要下载的分支。 </li>
+<li>其他人将其他分支推送到远程之后需要在本地创建一个跟踪分支进行开发。<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2></li>
+</ul>
+<ol>
+<li><code>git checkout -b branchname origin/branchname</code>本地创建一个对应的分支。</li>
+<li><code>git checkout -t origin/branchname</code>直接在本地创建</li>
+<li><code>git fetch origin branchname:branchname</code></li>
+<li><strong>错误方式:</strong><br>`git branch branchname;git checkout branchname;git pull origin branchname:branchname<br> 这样是在当前分支上创建新分支再与远程分支合并。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/01/hello-world/" data-id="cjrlyv7z70004oz7zksrrl85w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/14/cloneBranchFromOrigin/" data-id="cjrlyv7z00001oz7z6i6ycfl2" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-版本管理/">git 版本管理</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2019/02/01/插入排序/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/14/useHexoInTwoComputer/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          小谈插入排序
+          useHexoInTwoComputer
         
       </div>
     </a>
   
   
-    <a href="/2017/10/06/拜读UNP前两部分/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/12/12/learningSocket/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">拜读UNP前两部分</div>
+      <div class="article-nav-title">learningSocket</div>
     </a>
   
 </nav>
